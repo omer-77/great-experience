@@ -1,3 +1,4 @@
+import Slider from "@/components/Slider";
 import Image from "next/image";
 
 export default function Home() {
@@ -6,15 +7,8 @@ export default function Home() {
       <main className="w-full main flex-auto">
         <div className="container">
           <div className="p-2 sm:p-4 bg-white rounded-lg shadow-4xl">
-            <div className="w-full  bg-gray-100 rounded-lg mb-8">
-              <Image
-                src="/images/main-slider/01.png"
-                className="w-full aspect-video rounded-lg"
-                alt=""
-                width={500}
-                height={100}
-              />
-            </div>
+            <Slider></Slider>
+
             <div className="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2 sm:gap-4">
               <div className="rounded-lg border-2 border-gray-50 flex flex-col items-start justify-start md:p-3 p-2 relative">
                 <a href="#" className="block w-full relative mb-4">
