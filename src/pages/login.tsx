@@ -1,0 +1,57 @@
+const login = () => {
+  return (
+    <div>
+      <main className="w-full main flex-auto">
+        <div className="container">
+          <div className="p-2 sm:p-4 bg-white rounded-lg shadow-4xl sm:max-w-[700px] mx-auto">
+            <div className="flex flex-col text-center items-center justify-center mb-6">
+              <h2 className="text-lg">تسجيل الدخول</h2>
+              <span className="text-xs text-gray-500">قم بتسجيل الدخول لمتابعة التسوق</span>
+            </div>
+            <form method="post" action="#" className="flex flex-col w-full">
+              <div className="mb-4">
+                <label className="block mb-2 text-md" for="username">
+                  اسم المستخدم
+                </label>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  autocomplete
+                  className="w-full p-2 bg-white appearance-none rounded-md border text-md"
+                  placeholder="اسم المستخدم.."
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-2 text-md" for="password">
+                  كلمة المرور
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  autocomplete
+                  id="password"
+                  className="w-full p-2 bg-white appearance-none rounded-md border text-md"
+                  placeholder="كلمة المرور.."
+                />
+              </div>
+              <div className="flex gap-4">
+                <button type="button" className="w-full bg-primary text-secondary flex-1 p-2 text-md rounded-md">
+                  دخول
+                </button>
+                <button type="button" className="w-fit text-primary underline p-2 text-md rounded-md">
+                  نسيت كلمة المرور؟
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+      <footer className="w-full h-[80px] flex items-center justify-center text-primary bg-secondary-50 mt-4 md:mt-6">
+        <p className="text-sm">كافة الحقوق محفوظة لدى: متجر التجربة الجميلة | 2023</p>
+      </footer>
+    </div>
+  );
+};
+
+export default login;
