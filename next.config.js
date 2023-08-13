@@ -10,7 +10,7 @@ const nextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
-    domains: ["cdn.salla.network"],
+    domains: ["cdn.salla.network", "fakestoreapi.com"],
   },
 };
 
