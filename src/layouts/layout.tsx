@@ -5,7 +5,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   return (
     <div>
       <Header />
-      {children}
+      <main className="w-full main flex-auto">
+        <div className="container">{children}</div>
+      </main>
       <Footer />
     </div>
   );

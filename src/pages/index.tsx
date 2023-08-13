@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <>
       <main className="w-full main flex-auto">
-        <div className="container">
           <div className="p-2 sm:p-4 bg-white rounded-lg shadow-4xl">
             <Slider></Slider>
 
@@ -196,7 +195,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
       </main>
     </>
   );
