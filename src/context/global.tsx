@@ -1,30 +1,37 @@
 import { createContext, useState } from "react";
 
+// user: any;
+// setUser: (user: any) => void;
 interface IGlobalContextProps {
-  user: any;
   isLoggedIn: boolean;
-  setUser: (user: any) => void;
   setLoginStatus: (isLoggedIn: boolean) => void;
+  selectedCategory: string;
+  setSelectedCategory: (selectedCategory: string) => void;
 }
 
+// user: {},
+// setUser: () => {},
 export const GlobalContext = createContext<IGlobalContextProps>({
-  user: {},
   isLoggedIn: false,
-  setUser: () => {},
   setLoginStatus: () => {},
+  setSelectedCategory: () => {},
+  selectedCategory: "",
 });
 
 export const GlobalContextProvider = (props: { children: React.ReactElement<any, any> }) => {
-  const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  // user: currentUser,
+  // setUser: setCurrentUser,
 
   return (
     <GlobalContext.Provider
       value={{
-        user: currentUser,
         isLoggedIn: isLoggedIn,
-        setUser: setCurrentUser,
         setLoginStatus: setIsLoggedIn,
+        selectedCategory: selectedCategory,
+        setSelectedCategory: setSelectedCategory,
       }}
     >
       {props.children}

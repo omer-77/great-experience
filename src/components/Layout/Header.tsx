@@ -24,8 +24,8 @@ const Header = () => {
                   <Image src={`${CDN_LINK}/images/logo/logo-square.png`} alt="Logo" width={100} height={100} />
                 </a>
                 <div className="flex flex-col">
-                  <h1 className="text-xl">متجر التجربة الجميلة</h1>
-                  <small className="text-gray-400">متجرك لكل تجاربك وأفكارك الجميلة</small>
+                  <h1 className="text-xl">Greate Experince Store</h1>
+                  <small className="text-gray-400">A Store For All Your Ideas</small>
                 </div>
               </div>
               <div className="flex items-center gap-4">

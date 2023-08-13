@@ -1,7 +1,7 @@
 import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 import * as Yup from "yup";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "@/context/global";
 
 type FormValues = {
@@ -12,11 +12,16 @@ type FormValues = {
 const LoginForm = () => {
   const router = useRouter();
   const { isLoggedIn, setLoginStatus } = useContext(GlobalContext);
+  const [error, setError] = useState<string | null>(null);
+
+  if (isLoggedIn) {
+    router.push("/");
+  }
 
   const initialValues: FormValues = { username: "", password: "" };
   const validationSchema = Yup.object().shape({
-    username: Yup.string().min(4, "يجب ألا يقل اسم المستخدم عن 4 أحرف").required("اسم المستخدم مطلوب"),
-    password: Yup.string().min(5, "يجب ألا يقل اسم المستخدم عن 5 أحرف").required("كلمة المرور مطلوبة"),
+    username: Yup.string().min(4, "Username must be at least 4 characters long.").required("Username is required"),
+    password: Yup.string().min(5, "Password must be at least 6 characters long.").required("Password is required"),
   });
 
   return (
@@ -26,16 +31,19 @@ const LoginForm = () => {
       onSubmit={(values, actions) => {
         if (values.username === "omer" && values.password === "12345") {
           setLoginStatus(true);
-          
+
           router.back();
+          return;
         }
+
+        setError("Username or Password Is Wrong.");
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
         <Form method="post" action="#" className="flex flex-col w-full" onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block mb-2 text-md" htmlFor="username">
-              اسم المستخدم
+              Username
             </label>
             <input
               type="text"
@@ -43,7 +51,7 @@ const LoginForm = () => {
               id="username"
               autoComplete="true"
               className="form-control w-full p-2 bg-white appearance-none rounded-md border text-md"
-              placeholder="اسم المستخدم.."
+              placeholder="Username..."
               onChange={handleChange}
               value={values.username}
             />
@@ -52,7 +60,7 @@ const LoginForm = () => {
           </div>
           <div className="mb-4">
             <label className="block mb-2 text-md" htmlFor="password">
-              كلمة المرور
+              Password
             </label>
             <input
               type="password"
@@ -62,7 +70,7 @@ const LoginForm = () => {
               value={values.password}
               onChange={handleChange}
               className="form-control w-full p-2 bg-white appearance-none rounded-md border text-md"
-              placeholder="كلمة المرور.."
+              placeholder="Password..."
             />
             <p className="error text-red-600 my-2">{errors.password && touched.password && errors.password}</p>
           </div>
@@ -74,12 +82,10 @@ const LoginForm = () => {
               type="button"
               className="w-full bg-primary text-secondary flex-1 p-2 text-md rounded-md"
             >
-              دخول
-            </button>
-            <button type="button" className="w-fit text-primary underline p-2 text-md rounded-md">
-              نسيت كلمة المرور؟
+              Login
             </button>
           </div>
+          <p className="error text-red-600  my-2">{error}</p>
         </Form>
       )}
     </Formik>
@@ -91,8 +97,8 @@ const login = () => {
     <div>
       <div className="p-2 sm:p-4 bg-white rounded-lg shadow-4xl sm:max-w-[700px] mx-auto">
         <div className="flex flex-col text-center items-center justify-center mb-6">
-          <h2 className="text-lg">تسجيل الدخول</h2>
-          <span className="text-xs text-gray-500">قم بتسجيل الدخول لمتابعة التسوق</span>
+          <h2 className="text-lg">Login</h2>
+          <span className="text-xs text-gray-500">Sign in to continue shopping</span>
         </div>
         <LoginForm />
       </div>
