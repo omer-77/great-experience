@@ -1,41 +1,39 @@
+import Image from "next/image";
+import { useContext } from "react";
+import { GlobalContext } from "@/context/global";
+import { useRouter } from "next/router";
+
 const ProductDetails = () => {
+  const { productDetailsItem } = useContext(GlobalContext);
+
+  const router = useRouter();
+
+  if (typeof window !== "undefined" && productDetailsItem.id === 0) {
+    router.push("/");
+  }
+
   return (
     <div>
       <main className="w-full main flex-auto">
         <div className="p-2 sm:p-4 bg-white rounded-lg shadow-4xl">
           <div className="grid grid-cols-1 sm:grid-cols-3 sm:gap-4">
-            <img
-              src="images/products/01.png"
+            <Image
+              width={300}
+              height={300}
+              src={productDetailsItem.image}
               className="w-full aspect-4/3 object-cover rounded-lg mb-8 sm:mb-0"
               alt="product img"
             />
             <div className="flex flex-col gap-4 col-span-2">
               <article className="text-sm text-darker-300 leading-[1.8] ">
                 <div className="flx flex-col mb-6 gap-2">
-                  <h1 className="text-xl">سماعات apple AirPods Max الاصدار الجديد</h1>
-                  <small className="text-xs text-gray-500">الاصدار الاحدث و الافضل حتى اليوم</small>
+                  <h1 className="text-xl">{productDetailsItem.title}</h1>
+                  <small className="text-xs text-gray-500">{productDetailsItem.category}</small>
                 </div>
                 <div className="flex flex-col sm:flex-row w-full my-4 gap-0 sm:gap-2">
-                  <span className="font-medium text-md">2,250.00 SAR</span>
-                  <span className="font-medium text-sm line-through text-gray-300">2,500.00 SAR</span>
+                  <span className="font-medium text-md">{productDetailsItem.price}</span>
                 </div>
-                <p>
-                  لكن يجب أن أشرح لك كيف ولدت كل هذه الفكرة الخاطئة المتمثلة في إدانة السرور ومدح الألم ، وسأقدم لك
-                  وصفًا كاملاً للنظام ، وأشرح التعاليم الفعلية للمستكشف العظيم للحقيقة ، الباني البارع. السعادة البشرية.
-                  لا أحد يرفض أو يكره أو يتجنب المتعة نفسها ، لأنها متعة ، ولكن لأن أولئك الذين لا يعرفون كيفية السعي
-                  وراء المتعة يواجهون عواقب مؤلمة للغاية. ولا يوجد أيضًا أي شخص يحب أو يسعى أو يرغب في الحصول على الألم
-                  من نفسه ، لأنه ألم ، ولكن في بعض الأحيان تحدث ظروف يمكن أن يجلب له فيها الكدح والألم بعض المتعة
-                  الكبيرة. لنأخذ مثالا تافها ، أي منا يقوم بتمارين بدنية شاقة ، إلا للحصول على بعض المزايا منها؟ ولكن من
-                  له الحق في أن يخطئ في رجل يختار أن يستمتع بسرور ليس له عواقب مزعجة ، أو من يتجنب الألم الذي لا ينتج
-                  عنه متعة؟ من ناحية أخرى ، فإننا نشجب بسخط صالح ونكره الرجال الذين خدعهم سحر اللذة اللحظية وإحباطهم ،
-                  وأعمتهم الرغبة ، لدرجة أنهم لا يستطيعون التنبؤ بالألم والمتاعب التي لا بد أن تنجم عن ذلك ؛ واللوم
-                  المتساوي يقع على أولئك الذين يفشلون في أداء واجبهم بسبب ضعف الإرادة ، وهو نفس القول من خلال الانكماش
-                  من الكد والألم. هذه الحالات بسيطة للغاية وسهلة التمييز. في ساعة مجانية ، عندما تكون قدرتنا على
-                  الاختيار غير مقيدة وعندما لا شيء يمنعنا من القيام بما نفضله ، يجب الترحيب بكل متعة وتجنب كل ألم. ولكن
-                  في ظروف معينة وبسبب ادعاءات الواجب أو التزامات العمل ، سيحدث في كثير من الأحيان أنه يجب نبذ الملذات
-                  وقبول الإزعاج. لذلك يتمسك الرجل الحكيم دائمًا في هذه الأمور بمبدأ الاختيار هذا: فهو يرفض الملذات
-                  لتأمين ملذات أعظم أخرى ، وإلا فإنه يتحمل الآلام لتجنب الآلام السيئة
-                </p>
+                <p>{productDetailsItem.description}</p>
               </article>
               <div className="flex items-center justify-center gap-4">
                 <div className="flex shrink-0 items-center justify-center p-2 border border-1 border-gray-200 rounded-lg">

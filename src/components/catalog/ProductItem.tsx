@@ -1,9 +1,24 @@
 import Image from "next/image";
 import { Product } from "@/types/Catalog";
+import { useRouter } from "next/router";
+import { useContext } from "react";
+import { GlobalContext } from "@/context/global";
 
 export const ProductItem = ({ productItem }: { productItem: Product }) => {
+  const router = useRouter();
+  const { setProductDetailsItem } = useContext(GlobalContext);
+
+  const redirectToDetailsPage = () => {
+    setProductDetailsItem(productItem);
+
+    router.push("/product-details");
+  };
+
   return (
-    <div className="rounded-lg border-2 border-gray-50 flex flex-col items-start justify-start md:p-3 p-2 relative">
+    <div
+      className="rounded-lg border-2 border-gray-50 flex flex-col items-start justify-start md:p-3 p-2 relative"
+      onClick={redirectToDetailsPage}
+    >
       <a href="#" className="block w-full relative mb-4">
         <Image
           src={productItem.image}
