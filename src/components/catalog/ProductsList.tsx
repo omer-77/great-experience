@@ -12,11 +12,13 @@ const ProductsList = ({ searchFilter }: { searchFilter: string }) => {
 
   const { selectedCategory } = useContext(GlobalContext);
 
+  const PRODUCT_API = process.env.NEXT_PUBLIC_PRODUCT_API;
+
   const fetchData = async () => {
     setIsLoading(true);
 
     const categoryFilter = selectedCategory && selectedCategory !== "All" ? `/category/${selectedCategory}` : "";
-    const res = await fetch(`https://fakestoreapi.com/products${categoryFilter}?limit=${pageSize}`);
+    const res = await fetch(`${PRODUCT_API}/products${categoryFilter}?limit=${pageSize}`);
     const data = await res.json();
 
     // TODO : a limit should be added to this filter
@@ -38,7 +40,6 @@ const ProductsList = ({ searchFilter }: { searchFilter: string }) => {
     ) {
       return;
     }
-    console.log("before fetch !!");
     fetchData();
   };
 

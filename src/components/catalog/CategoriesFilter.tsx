@@ -7,8 +7,10 @@ const CategoriesFilter = () => {
 
   const { selectedCategory, setSelectedCategory } = useContext(GlobalContext);
 
+  const PRODUCT_API = process.env.NEXT_PUBLIC_PRODUCT_API;
+
   const fetchData = async () => {
-    const res = await fetch("https://fakestoreapi.com/products/categories");
+    const res = await fetch(`${PRODUCT_API}/products/categories`);
     const data = await res.json();
 
     setCategoriesList(["All", ...data]);

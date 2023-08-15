@@ -5,6 +5,7 @@ import MainLayout from "../layouts/layout";
 import Head from "next/head";
 
 import { GlobalContextProvider } from "@/context/global";
+import { CartContextProvider } from "@/context/Cart";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -24,9 +25,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta name="apple-mobile-web-app-status-bar-style" content="#BAF3E6" />
       </Head>
       <GlobalContextProvider>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
+        <CartContextProvider>
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
+        </CartContextProvider>
       </GlobalContextProvider>
     </>
   );

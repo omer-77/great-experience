@@ -28,15 +28,22 @@ const LoginForm = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values, actions) => {
-        if (values.username === "omer" && values.password === "12345") {
+      onSubmit={async (values, actions) => {
+        const res = await fetch(`/api/auth`, {
+          method: "POST",
+          body: JSON.stringify(values),
+        });
+
+        const { message } = await res.json();
+
+        if (res.status === 200) {
           setLoginStatus(true);
 
           router.back();
           return;
         }
 
-        setError("Username or Password Is Wrong.");
+        setError(message);
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (

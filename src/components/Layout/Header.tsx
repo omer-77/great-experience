@@ -5,8 +5,15 @@ import { useContext } from "react";
 
 const Header = () => {
   const CDN_LINK = process.env.NEXT_PUBLIC_CDN_URL;
+
   const router = useRouter();
-  const { isLoggedIn } = useContext(GlobalContext);
+  const { isLoggedIn, setLoginStatus } = useContext(GlobalContext);
+
+  const handleLoginButton = () => {
+    if (isLoggedIn) setLoginStatus(false);
+
+    router.push("/login");
+  };
 
   return (
     <>
@@ -31,14 +38,10 @@ const Header = () => {
               <div className="flex items-center gap-4">
                 <button
                   type="button"
-                  className="w-[40px] h-[40px] rounded-full text-center flex items-center justify-center bg-secondary-50 text-primary"
-                  onClick={() => {
-                    if (!isLoggedIn) {
-                      router.push("/login");
-                    }
-                  }}
+                  className="w-[70px] h-[40px] rounded text-center flex items-center justify-center  text-primary-50"
+                  onClick={handleLoginButton}
                 >
-                  <i className="sicon-user"></i>
+                  {isLoggedIn ? "Logout" : "Login"}
                 </button>
                 <div className="relative">
                   <button

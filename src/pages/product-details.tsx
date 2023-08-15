@@ -1,16 +1,45 @@
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/context/global";
 import { useRouter } from "next/router";
+import { Product } from "@/types/Catalog";
+import { CartContext } from "@/context/Cart";
+import CountWidget from "@/components/cart/CountWidget";
 
-const ProductDetails = () => {
-  const { productDetailsItem } = useContext(GlobalContext);
-
+const ProductDetails = ({ ProductDetailsItem }: { ProductDetailsItem: Product }) => {
   const router = useRouter();
+  const productId = router.query.productId;
+  const { addItem } = useContext(CartContext);
 
-  if (typeof window !== "undefined" && productDetailsItem.id === 0) {
-    router.push("/");
-  }
+  const [count, setCount] = useState(1);
+
+  useEffect(() => {
+    if (!router.isReady) {
+      return;
+    }
+
+    if (typeof window !== "undefined" && !productId) {
+      router.push("/");
+    }
+  }, [productId, router]);
+
+  const increaseCount = () => setCount(count + 1);
+  const decreaseCount = () => {
+    const addedCount = count - 1;
+
+    if (addedCount < 1) {
+      setCount(1);
+      return;
+    }
+
+    setCount(addedCount);
+  };
+
+  const handleAddToCart = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+
+    addItem({ count: count, item: ProductDetailsItem });
+  };
 
   return (
     <div>
@@ -20,32 +49,29 @@ const ProductDetails = () => {
             <Image
               width={300}
               height={300}
-              src={productDetailsItem.image}
+              src={ProductDetailsItem.image}
               className="w-full aspect-4/3 object-cover rounded-lg mb-8 sm:mb-0"
               alt="product img"
             />
             <div className="flex flex-col gap-4 col-span-2">
               <article className="text-sm text-darker-300 leading-[1.8] ">
                 <div className="flx flex-col mb-6 gap-2">
-                  <h1 className="text-xl">{productDetailsItem.title}</h1>
-                  <small className="text-xs text-gray-500">{productDetailsItem.category}</small>
+                  <h1 className="text-xl">{ProductDetailsItem.title}</h1>
+                  <small className="text-xs text-gray-500">{ProductDetailsItem.category}</small>
                 </div>
                 <div className="flex flex-col sm:flex-row w-full my-4 gap-0 sm:gap-2">
-                  <span className="font-medium text-md">{productDetailsItem.price}</span>
+                  <span className="font-medium text-md">{ProductDetailsItem.price}</span>
                 </div>
-                <p>{productDetailsItem.description}</p>
+                <p>{ProductDetailsItem.description}</p>
               </article>
               <div className="flex items-center justify-center gap-4">
-                <div className="flex shrink-0 items-center justify-center p-2 border border-1 border-gray-200 rounded-lg">
-                  <button className="shrink-0 px-2 text-md text-gray-500">+</button>
-                  <input type="number" value="1" className="w-[50px] flex-1 text-center appearance-none" />
-                  <button className="shrink-0 px-2 text-md text-gray-500">-</button>
-                </div>
+                <CountWidget increaseCount={increaseCount} decreaseCount={decreaseCount} count={count}></CountWidget>
                 <button
                   type="button"
                   className="w-full h-[42px] bg-primary text-secondary flex-1 p-2 text-md rounded-md"
+                  onClick={handleAddToCart}
                 >
-                  إضافة للسلة
+                  Add To Cart
                 </button>
               </div>
             </div>
@@ -55,5 +81,17 @@ const ProductDetails = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context: { query: any }) {
+  const productId = context.query.productId;
+  if (!productId) return { props: { ProductDetailsItem: {} } };
+
+  const PRODUCT_API = process.env.NEXT_PUBLIC_PRODUCT_API;
+
+  const res = await fetch(`${PRODUCT_API}/products/${productId}`);
+  const ProductDetailsItem = await res.json();
+
+  return { props: { ProductDetailsItem } };
+}
 
 export default ProductDetails;
