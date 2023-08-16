@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { ProductItem } from "./ProductItem";
+import ProductItem from "./ProductItem";
 import { Product } from "@/types/Catalog";
 import { GlobalContext } from "@/context/global";
 

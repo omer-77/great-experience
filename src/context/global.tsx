@@ -21,7 +21,7 @@ export const GlobalContextProvider = (props: { children: React.ReactElement<any,
   return (
     <GlobalContext.Provider
       value={{
-        isLoggedIn: isLoggedIn,
+        isLoggedIn,
         setLoginStatus: setIsLoggedIn,
         selectedCategory: selectedCategory,
         setSelectedCategory: setSelectedCategory,

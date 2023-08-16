@@ -2,11 +2,10 @@ import Image from "next/image";
 import { Product } from "@/types/Catalog";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { GlobalContext } from "@/context/global";
 import { CartContext } from "@/context/Cart";
 import AddToCartButton from "../shared.tsx/AddToCartButton";
 
-export const ProductItem = ({ productItem }: { productItem: Product }) => {
+const ProductItem = ({ productItem }: { productItem: Product }) => {
   const router = useRouter();
   const { addItem } = useContext(CartContext);
 
@@ -46,3 +45,5 @@ export const ProductItem = ({ productItem }: { productItem: Product }) => {
     </div>
   );
 };
+
+export default ProductItem;

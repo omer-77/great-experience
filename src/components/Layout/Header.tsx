@@ -33,7 +33,7 @@ const Header = () => {
                   <Image src={`${CDN_LINK}/images/logo/logo-square.png`} alt="Logo" width={100} height={100} />
                 </a>
                 <div className="flex flex-col">
-                  <h1 className="text-xl">Greate Experince Store</h1>
+                  <h1 className="text-xl">Great Experince Store</h1>
                   <small className="text-gray-400">A Store For All Your Ideas</small>
                 </div>
               </div>
