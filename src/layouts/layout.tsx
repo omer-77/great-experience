@@ -3,7 +3,7 @@ import Footer from "../components/Layout/Footer";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <div className="layout-container">
       <Header />
       <main className="w-full main flex-auto">
         <div className="container">{children}</div>

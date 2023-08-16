@@ -6,8 +6,14 @@ import Head from "next/head";
 
 import { GlobalContextProvider } from "@/context/global";
 import { CartContextProvider } from "@/context/Cart";
+import { useRouter } from "next/router";
+import { PageNames } from "@/constants";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  const pageTitle = PageNames[router.route];
+
   return (
     <>
       <Head>
@@ -23,6 +29,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#BAF3E6" />
         <meta name="msapplication-navbutton-color" content="#BAF3E6" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#BAF3E6" />
+        <title>{pageTitle}</title>
       </Head>
       <GlobalContextProvider>
         <CartContextProvider>

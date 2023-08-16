@@ -6,6 +6,7 @@ import { Product } from "@/types/Catalog";
 import { CartContext } from "@/context/Cart";
 import CountWidget from "@/components/cart/CountWidget";
 import AddToCartButton from "@/components/shared.tsx/AddToCartButton";
+import { NextSeo } from "next-seo";
 
 const ProductDetails = ({ ProductDetailsItem }: { ProductDetailsItem: Product }) => {
   const router = useRouter();
@@ -43,7 +44,8 @@ const ProductDetails = ({ ProductDetailsItem }: { ProductDetailsItem: Product })
   };
 
   return (
-    <div>
+    <>
+      <NextSeo title={ProductDetailsItem.title} description={ProductDetailsItem.description} />
       <main className="w-full main flex-auto">
         <div className="p-2 sm:p-4 bg-white rounded-lg shadow-4xl">
           <div className="grid grid-cols-1 sm:grid-cols-3 sm:gap-4">
@@ -73,7 +75,7 @@ const ProductDetails = ({ ProductDetailsItem }: { ProductDetailsItem: Product })
           </div>
         </div>
       </main>
-    </div>
+    </>
   );
 };
 
