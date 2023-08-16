@@ -1,15 +1,19 @@
-
 ## Getting Started
 
-First, run the development server:
+To run development server:
 
 ```bash
 npm i
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To run Tests :
 
+```bash
+npm run test
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Learn More
 
@@ -21,14 +25,11 @@ NEXT_PUBLIC_BASE_URL=http://localhost:3000/
 NEXT_PUBLIC_PRODUCT_API=https://fakestoreapi.com
 ```
 
-
 ## Notes
 
-- There is only one user added to the system , use these credintials : 
+- There is only one user added to the system , use these credintials :
 
 ```bash
 username=omer
 password=12345
 ```
-
-
