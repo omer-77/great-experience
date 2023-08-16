@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "react";
 
 const CategoriesFilter = () => {
   const [categoriesList, setCategoriesList] = useState<Array<string>>([]);
-  //   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   const { selectedCategory, setSelectedCategory } = useContext(GlobalContext);
 
