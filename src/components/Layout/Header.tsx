@@ -40,7 +40,7 @@ const Header = () => {
               <div className="flex items-center gap-4">
                 <button
                   type="button"
-                  className="w-[70px] h-[40px] rounded text-center flex items-center justify-center  text-primary-50"
+                  className="w-[70px] h-[40px] rounded text-center flex-center  text-primary-50"
                   onClick={handleLoginButton}
                 >
                   {isLoggedIn ? "Logout" : "Login"}
@@ -48,7 +48,7 @@ const Header = () => {
                 <div className="relative">
                   <button
                     type="button"
-                    className="w-[40px] h-[40px] rounded-full text-center flex items-center justify-center bg-secondary-50 text-primary"
+                    className="w-[40px] h-[40px] rounded-full text-center flex-center bg-secondary-50 text-primary"
                     onClick={() => {
                       router.push("/cart");
                     }}

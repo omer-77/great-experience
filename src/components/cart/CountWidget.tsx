@@ -8,7 +8,7 @@ const CountWidget = ({
   count: number;
 }) => {
   return (
-    <div className="flex shrink-0 items-center justify-center p-2 border border-1 border-gray-200 rounded-lg">
+    <div className="flex-center shrink-0 p-2 border border-1 border-gray-200 rounded-lg">
       <button
         className="shrink-0 px-2 text-md text-gray-500"
         onClick={event => {

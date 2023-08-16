@@ -11,31 +11,13 @@ export default function Slider() {
     <div className="w-full  bg-gray-100 rounded-lg mb-8">
       <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
         <SwiperSlide>
-          <Image
-            src="/images/main-slider/01.png"
-            className="w-full aspect-video rounded-lg"
-            alt=""
-            width={500}
-            height={100}
-          />
+          <Image src="/images/main-slider/01.png" className="slider-image" alt="" width={500} height={100} />
         </SwiperSlide>
         <SwiperSlide>
-          <Image
-            src="/images/main-slider/02.png"
-            className="w-full aspect-video rounded-lg"
-            alt=""
-            width={500}
-            height={100}
-          />
+          <Image src="/images/main-slider/02.png" className="slider-image" alt="" width={500} height={100} />
         </SwiperSlide>
         <SwiperSlide>
-          <Image
-            src="/images/main-slider/03.png"
-            className="w-full aspect-video rounded-lg"
-            alt=""
-            width={500}
-            height={100}
-          />
+          <Image src="/images/main-slider/03.png" className="slider-image" alt="" width={500} height={100} />
         </SwiperSlide>
       </Swiper>
     </div>

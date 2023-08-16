@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "@/context/global";
 import { useRouter } from "next/router";
 import { Product } from "@/types/Catalog";
 import { CartContext } from "@/context/Cart";
@@ -67,7 +66,7 @@ const ProductDetails = ({ ProductDetailsItem }: { ProductDetailsItem: Product })
                 </div>
                 <p>{ProductDetailsItem.description}</p>
               </article>
-              <div className="flex items-center justify-center gap-4">
+              <div className="flex-center gap-4">
                 <CountWidget increaseCount={increaseCount} decreaseCount={decreaseCount} count={count}></CountWidget>
                 <AddToCartButton handleAddToCart={handleAddToCart} />
               </div>

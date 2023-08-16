@@ -39,7 +39,7 @@ export const ProductItem = ({ productItem }: { productItem: Product }) => {
           <h2 className="text-sm">{productItem.title}</h2>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row items-center justify-center w-full my-4 gap-0 sm:gap-2">
+      <div className="flex-center flex-col sm:flex-row w-full my-4 gap-0 sm:gap-2">
         <span className="font-medium text-md">{productItem.price} SAR</span>
       </div>
       <AddToCartButton handleAddToCart={handleAddToCart} />

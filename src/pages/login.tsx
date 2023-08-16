@@ -103,7 +103,7 @@ const login = () => {
   return (
     <div>
       <div className="p-2 sm:p-4 bg-white rounded-lg shadow-4xl sm:max-w-[700px] mx-auto">
-        <div className="flex flex-col text-center items-center justify-center mb-6">
+        <div className="flex-center flex-col text-center mb-6">
           <h2 className="text-lg">Login</h2>
           <span className="text-xs text-gray-500">Sign in to continue shopping</span>
         </div>

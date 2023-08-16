@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { Product, CartItem } from "@/types/Catalog";
+import { CartItem } from "@/types/Catalog";
 
 interface ICartContextProps {
   cartItems: CartItem[];
@@ -58,7 +58,6 @@ export const CartContextProvider = (props: { children: React.ReactElement<any, a
 
       setCartItems(swapArray);
     }
-
   };
 
   const calculateCartItemsCount = () => {

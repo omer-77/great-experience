@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { Product, productDetailsItemInitialValue } from "@/types/Catalog";
 
 interface IGlobalContextProps {
   isLoggedIn: boolean;
