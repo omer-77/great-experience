@@ -1,3 +1,4 @@
+import { CartContext } from "@/context/Cart";
 import { GlobalContext } from "@/context/global";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -8,6 +9,7 @@ const Header = () => {
 
   const router = useRouter();
   const { isLoggedIn, setLoginStatus } = useContext(GlobalContext);
+  const { itemsCount } = useContext(CartContext);
 
   const handleLoginButton = () => {
     if (isLoggedIn) setLoginStatus(false);
@@ -52,6 +54,11 @@ const Header = () => {
                     }}
                   >
                     <i className="sicon-shopping-bag"></i>
+                    {isLoggedIn && itemsCount > 0 && (
+                      <span className="rounded-full bg-primary text-secondary absolute top-0 w-5 h-5 text-xs left-7 flex justify-center items-center">
+                        {itemsCount}
+                      </span>
+                    )}
                   </button>
                 </div>
               </div>

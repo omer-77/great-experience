@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useContext } from "react";
 import { GlobalContext } from "@/context/global";
 import { CartContext } from "@/context/Cart";
+import AddToCartButton from "../shared.tsx/AddToCartButton";
 
 export const ProductItem = ({ productItem }: { productItem: Product }) => {
   const router = useRouter();
@@ -41,13 +42,7 @@ export const ProductItem = ({ productItem }: { productItem: Product }) => {
       <div className="flex flex-col sm:flex-row items-center justify-center w-full my-4 gap-0 sm:gap-2">
         <span className="font-medium text-md">{productItem.price} SAR</span>
       </div>
-      <button
-        type="button"
-        className="w-full bg-primary text-secondary p-2 text-md rounded-md"
-        onClick={handleAddToCart}
-      >
-        Add to Cart
-      </button>
+      <AddToCartButton handleAddToCart={handleAddToCart} />
     </div>
   );
 };

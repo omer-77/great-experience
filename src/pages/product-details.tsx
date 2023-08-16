@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { Product } from "@/types/Catalog";
 import { CartContext } from "@/context/Cart";
 import CountWidget from "@/components/cart/CountWidget";
+import AddToCartButton from "@/components/shared.tsx/AddToCartButton";
 
 const ProductDetails = ({ ProductDetailsItem }: { ProductDetailsItem: Product }) => {
   const router = useRouter();
@@ -66,13 +67,7 @@ const ProductDetails = ({ ProductDetailsItem }: { ProductDetailsItem: Product })
               </article>
               <div className="flex items-center justify-center gap-4">
                 <CountWidget increaseCount={increaseCount} decreaseCount={decreaseCount} count={count}></CountWidget>
-                <button
-                  type="button"
-                  className="w-full h-[42px] bg-primary text-secondary flex-1 p-2 text-md rounded-md"
-                  onClick={handleAddToCart}
-                >
-                  Add To Cart
-                </button>
+                <AddToCartButton handleAddToCart={handleAddToCart} />
               </div>
             </div>
           </div>

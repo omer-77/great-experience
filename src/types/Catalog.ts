@@ -11,6 +11,11 @@ export type Product = {
   };
 };
 
+export type CartItem = {
+  count: number;
+  item: Product;
+};
+
 export const productDetailsItemInitialValue: Product = {
   id: 0,
   title: "",

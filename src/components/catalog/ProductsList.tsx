@@ -34,7 +34,7 @@ const ProductsList = ({ searchFilter }: { searchFilter: string }) => {
 
   const handleScroll = () => {
     if (
-      window.innerHeight + document.documentElement.scrollTop - document.documentElement.offsetHeight !== 0 ||
+      window.innerHeight + document.documentElement.scrollTop - document.documentElement.offsetHeight < -1 ||
       isLoading ||
       !!searchFilter
     ) {

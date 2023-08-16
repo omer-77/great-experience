@@ -1,40 +1,45 @@
-import { createContext, useState } from "react";
-import { Product } from "@/types/Catalog";
-
-type cartItem = {
-  count: number;
-  item: Product;
-};
+import { createContext, useEffect, useState } from "react";
+import { Product, CartItem } from "@/types/Catalog";
 
 interface ICartContextProps {
-  cartItems: cartItem[];
-  addItem: (product: cartItem) => void;
+  cartItems: CartItem[];
+  itemsCount: number;
+  addItem: (product: CartItem) => void;
   deleteItem: (productId: number) => void;
   editItem: (id: number, count: number) => void;
 }
 
 export const CartContext = createContext<ICartContextProps>({
   cartItems: [],
+  itemsCount: 0,
   addItem: () => {},
   deleteItem: () => {},
   editItem: () => {},
 });
 
 export const CartContextProvider = (props: { children: React.ReactElement<any, any> }) => {
-  const [cartItems, setCartItems] = useState<Array<cartItem>>([]);
+  const [cartItems, setCartItems] = useState<Array<CartItem>>([]);
+  const [itemsCount, setItemsCount] = useState(0);
 
-  const addItem = (cartItemToAdd: cartItem) => {
+  useEffect(() => {
+    calculateCartItemsCount();
+  }, [cartItems]);
+
+  const addItem = (cartItemToAdd: CartItem) => {
     const indexOfItem = cartItems.findIndex(cartItem => cartItem.item.id === cartItemToAdd.item.id);
 
     if (indexOfItem !== -1) {
-      cartItems[indexOfItem].count += cartItemToAdd.count;
+      const swapArray = [...cartItems];
 
-      return;
+      swapArray[indexOfItem].count += cartItemToAdd.count;
+
+      setCartItems(swapArray);
+    } else {
+      const newItemsArray = [...cartItems];
+      newItemsArray.push(cartItemToAdd);
+
+      setCartItems(newItemsArray);
     }
-
-    const newItemsArray = [...cartItems, cartItemToAdd];
-
-    setCartItems(newItemsArray);
   };
 
   const deleteItem = (productId: number) => {
@@ -47,19 +52,28 @@ export const CartContextProvider = (props: { children: React.ReactElement<any, a
     const indexOfItem = cartItems.findIndex(cartItem => cartItem.item.id === id);
 
     if (indexOfItem !== -1) {
-      const array = [...cartItems];
-      
-      array[indexOfItem].count = count;
+      const swapArray = [...cartItems];
 
-      setCartItems(array);
+      swapArray[indexOfItem].count = count;
 
+      setCartItems(swapArray);
     }
+
+  };
+
+  const calculateCartItemsCount = () => {
+    const totalCount = cartItems.reduce((accumulator, currentObject) => {
+      return accumulator + currentObject.count;
+    }, 0);
+
+    setItemsCount(totalCount);
   };
 
   return (
     <CartContext.Provider
       value={{
         cartItems,
+        itemsCount,
         addItem,
         deleteItem,
         editItem,

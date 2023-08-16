@@ -10,11 +10,13 @@ const AUTHORIZED_USER_DATA = {
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   const body = JSON.parse(req.body);
-  
+
   if (body.username === AUTHORIZED_USER_DATA.username && body.password === AUTHORIZED_USER_DATA.password) {
     res.status(200).json({
       message: "User Logged In",
     });
+
+    return;
   }
 
   res.status(401).json({

@@ -1,6 +1,7 @@
 import CountWidget from "@/components/cart/CountWidget";
 import { CartContext } from "@/context/Cart";
 import { GlobalContext } from "@/context/global";
+import { CartItem } from "@/types/Catalog";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
@@ -9,7 +10,6 @@ const Cart = () => {
   const router = useRouter();
   const { isLoggedIn } = useContext(GlobalContext);
   const { cartItems, deleteItem, editItem } = useContext(CartContext);
-
 
   if (typeof window !== "undefined" && !isLoggedIn) {
     router.push("/login");
@@ -22,11 +22,13 @@ const Cart = () => {
     router.push(`product-details/?productId=${id}`);
   };
 
-  const increaseCount = (cartItem: any) => {
+  const increaseCount = (cartItem: CartItem) => {
     editItem(cartItem.item.id, cartItem.count + 1);
   };
 
-  const decreaseCount = (cartItem: any) => {
+  const decreaseCount = (cartItem: CartItem) => {
+    if (cartItem.count - 1 < 1) return;
+
     editItem(cartItem.item.id, cartItem.count - 1);
   };
 
