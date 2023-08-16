@@ -17,7 +17,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Learn More
 
-List of Env vars to add ot local.env
+List of Env vars to add ot .env.local
 
 ```bash
 NEXT_PUBLIC_CDN_URL=https://cdn.salla.network
